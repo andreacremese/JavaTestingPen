@@ -1,7 +1,6 @@
-package test.algo;
+package test.java.algo;
 
-import com.sun.deploy.util.ArrayUtil;
-import main.algos.Sorting;
+import main.java.algos.Sorting;
 import org.junit.Test;
 import org.junit.Assert;
 
@@ -24,7 +23,6 @@ public class AlgoTest {
 
             TestContains(arr, new int[] { 3, 2, 1 });
     }
-
 
     private void TestSortedArray(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {

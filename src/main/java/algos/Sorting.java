@@ -1,4 +1,4 @@
-package main.algos;
+package main.java.algos;
 
 /**
  * Created by acremese on 5/22/17.
