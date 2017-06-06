@@ -5,8 +5,8 @@ package main.java.algos;
  */
 
 // how to make a static class in Java?
-public final class Sorting {
-    public static void BubbleSort(int[] arr){
+public interface Sorting {
+    static void BubbleSort(int[] arr){
         if (arr == null) { return; }
         Boolean changed = false;
 

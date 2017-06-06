@@ -15,9 +15,8 @@ public class AlgoTest {
     public void canBubbleSortWhenInInverseOrderAndWithDuplicate() {
             // arrange
             int[] arr = { 3, 2, 1, 1 };
-            Sorting s = new Sorting();
             // act
-            s.BubbleSort(arr);
+            Sorting.BubbleSort(arr);
             // assert
             TestSortedArray(arr);
 

@@ -83,5 +83,62 @@ types of the parameters if needed
 
 ```
 
+## functional interface
 
-##
+Note that a functional interface is 
+
+```
+A functional interface is an interface that has just one abstract method, and thus
+represents a single function contract. This "single" method may take the form
+of multiple abstract methods with override-equivalent signatures inherited from
+superinterfaces; in this case, the inherited methods logically represent a single
+method.
+```
+
+And `Evaluation of a lambda expression produces an instance of a functional interface`. Meaning, a lambda can generate only
+an instance of an interface with a single method. For that reason there is no need to indicate which method is to be ovewritten,
+there is ONLY one method to be overwritten.
+
+From the specs:
+```
+    Function<T,R>
+    Represents a function that accepts one argument and produces a result.
+
+```
+Meaning, this interface can be newed up and all the following code does exactly the same
+
+```
+    public Integer PersonAgeWrapper(Person p){
+
+        Function<Person, Integer> f = new Function<Person, Integer> () {
+            public Integer apply(Person p) {
+                return p.GetAge();
+            }
+        };
+
+        return f.apply(p);
+    }
+
+    public Integer PersonAgeWrapperWithLambda(Person p){
+        Function<Person, Integer> f = person -> person.GetAge ();
+        return f.apply(p);
+    }
+
+    public Integer PersonAgeWrapperWithLambdaMethodReference(Person p){
+        Function<Person, Integer> f = Person::GetAge ;
+        return f.apply(p);
+    }
+
+```
+
+The same can be done in, for example, with the BinaryOperator, as the lambda overrides the .apply method.
+
+
+# some of the Java 8 specific interface stuff we have seen:
+
+
+* **Lambda expressions** (they do what it says on the tin, they are similar in c#)
+* **Static method** on interfaces they belong only to the interface class. This seems to be basically a work around on the fact that static classes do not exist in Java, so interfaces step in to do the trick. `Interface.someStaticMethod()`
+* **Default methods** when adding a contract to an interface you can specify a default implementation to it. THis seems **severely** counterintuitive to me, as the point of an interface is NOT to include any implementation, only, well, interface...
+* **Method reference syntax** `Person :: getName` (this is a shorthand expression for a lambda expression that ecexutes just one method
+ it is the same as `p -> p.getName()`. Obviously, it works only on single line methods)
