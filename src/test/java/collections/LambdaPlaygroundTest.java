@@ -1,6 +1,7 @@
 package test.java.collections;
 
 import main.java.collections.LambdaPlayground;
+import main.java.collections.MyPredicate;
 import main.java.collections.Person;
 import org.junit.Test;
 
@@ -98,5 +99,37 @@ public class LambdaPlaygroundTest {
         assertTrue("sorting is wrong", people[0].getAge() == 5);
         assertTrue("sorting is wrong", people[1].getAge() == 6);
         assertTrue("sorting is wrong", people[2].getAge() == 7);
+    }
+
+
+    //   ~~~~~~~~~~~~~~~~~~~~~~ Predicates ~~~~~~~~~
+    @Test
+    public void canUsePredicateForShorterThan(){
+        assertTrue("string is actually longer", LambdaPlayground.shorterThan("Hello", 20));
+    }
+
+    @Test
+    public void canUseAndPredicateForShorterThan(){
+        assertTrue("string is actually outside bounds", LambdaPlayground.lengthBetweenTwoIntergers("Hello", 3,20));
+    }
+
+    @Test
+    public void canCreateAPredicateForEqualityWithFixesType() {
+        // arrange
+        MyPredicate<String> p1 = MyPredicate.isEqualString("Test");
+        // act
+        Boolean result = p1.test("Test");
+        // assert
+        assertTrue("they are not the same", result);
+    }
+
+    @Test
+    public void canCreateAPredicateForEqualityWithGeneric() {
+        // arrange
+        MyPredicate<Integer> p1 = MyPredicate.isEqual(1);
+        // act
+        Boolean result = p1.test(1);
+        // assert
+        assertTrue("they are not the same", result);
     }
 }

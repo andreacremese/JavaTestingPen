@@ -1,8 +1,11 @@
 package main.java.collections;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public interface LambdaPlayground {
 
@@ -84,5 +87,19 @@ public interface LambdaPlayground {
 
 
         Arrays.sort(people, cmp1b);
+    }
+
+
+    static Boolean shorterThan(String s, Integer i) {
+        Predicate<String> p = str -> str.length() < i;
+        return p.test(s);
+    }
+
+    static Boolean lengthBetweenTwoIntergers(String s, Integer lo, Integer hi) {
+        MyPredicate<String> p1 = str -> str.length() > lo;
+        MyPredicate<String> p2 = str -> str.length() < hi;
+        MyPredicate<String> p3 = p1.and(p2);
+
+        return p3.test(s);
     }
 }
