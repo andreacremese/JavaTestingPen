@@ -216,3 +216,18 @@ The full list is at https://docs.oracle.com/javase/8/docs/api/java/util/function
 
 
 
+## Iterables / collection methods in Java and map inerface methods
+The idea is to pass in a lambda to a method. See underscore and, pretty much c#. The only difference is the method reference pattern `Person::getName`
+
+e.g. the foreach take s `biconsumer` for a Map<U,K>, as the consumer will get a reference to both the key and to the value.
+
+there are a few methods like .replace, `.addIfNotPresent` and `.computerIfAbset`, see https://docs.oracle.com/javase/8/docs/api/java/util/Map.html 
+
+computeIfAbsent is interesting, as it basically used for initialization for maps of maps
+
+Map<String, Map<String, Integer>> map = new ...
+
+map.computeIfAbsent("one", key -> new Hashmap<String, INteger>).put("two", someAlreadyInitializedElement)
+
+and so you don't have anymore the null throwing at run time
+

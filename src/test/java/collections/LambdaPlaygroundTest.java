@@ -5,6 +5,13 @@ import main.java.collections.MyPredicate;
 import main.java.collections.Person;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+import java.util.HashMap;
+
 import static org.junit.Assert.*;
 
 public class LambdaPlaygroundTest {
@@ -131,5 +138,22 @@ public class LambdaPlaygroundTest {
         Boolean result = p1.test(1);
         // assert
         assertTrue("they are not the same", result);
+    }
+
+    @Test
+    public void canAddHashMaps() {
+        // arrange
+        HashMap<String, List<String>> m1 = new HashMap<String, List<String>>();
+        HashMap<String, List<String>> m2 = new HashMap<String, List<String>>();
+
+        m1.computeIfAbsent("one", (k) -> new ArrayList(Arrays.asList("a", "b")) );
+        m2.computeIfAbsent("one", (k) -> new ArrayList(Arrays.asList("c", "d")) );
+
+        // act
+        LambdaPlayground.addMaps(m1,m2);
+
+        // assert
+        assertTrue("elemtns were not added", m1.get("one").size() == 4);
+
     }
 }

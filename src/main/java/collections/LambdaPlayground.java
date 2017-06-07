@@ -4,6 +4,8 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -101,5 +103,16 @@ public interface LambdaPlayground {
         MyPredicate<String> p3 = p1.and(p2);
 
         return p3.test(s);
+    }
+
+    static void addMaps(HashMap<String, List<String>> m1, HashMap<String, List<String>> m2) {
+
+        m2.forEach(
+                (k,v) ->
+                        m1.merge(k,v,
+                                (existinglist, newlist) -> {
+                            existinglist.addAll(newlist);
+                            return existinglist;
+        }));
     }
 }
