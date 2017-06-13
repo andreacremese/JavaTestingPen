@@ -97,13 +97,20 @@ public interface LambdaPlayground {
         return p.test(s);
     }
 
-    static Boolean lengthBetweenTwoIntergers(String s, Integer lo, Integer hi) {
-        MyPredicate<String> p1 = str -> str.length() > lo;
-        MyPredicate<String> p2 = str -> str.length() < hi;
-        MyPredicate<String> p3 = p1.and(p2);
-
-        return p3.test(s);
-    }
+//    static Boolean lengthBetweenTwoIntergers(String s, Integer lo, Integer hi) {
+////        MyPredicate<String> p1 = new MyPredicate<String>() {
+////            public boolean test(String s) {
+////                return s.length() > lo;
+////            }
+////        };
+//
+//        //MyPredicate<String> p1 = str -> str.length() > lo;
+//        MyPredicate<String> p1 = str -> str.length() > lo;
+//        MyPredicate<String> p2 = str -> str.length() < hi;
+//        MyPredicate<String> p3 = p1.and(p2);
+//
+//        return p3.test(s);
+//    }
 
     static void addMaps(HashMap<String, List<String>> m1, HashMap<String, List<String>> m2) {
 

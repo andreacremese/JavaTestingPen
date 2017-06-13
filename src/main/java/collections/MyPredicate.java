@@ -5,6 +5,10 @@ package main.java.collections;
 public interface MyPredicate<T> {
     boolean test(T t);
 
+    default boolean test(String t) {
+        return t.length() > 4;
+    }
+
     default MyPredicate<T> and(MyPredicate<T> other) {
         return t -> test(t) && other.test(t);
     }

@@ -1,5 +1,6 @@
 package test.java.collections;
 
+import main.java.collections.Child;
 import main.java.collections.LambdaPlayground;
 import main.java.collections.MyPredicate;
 import main.java.collections.Person;
@@ -114,21 +115,21 @@ public class LambdaPlaygroundTest {
     public void canUsePredicateForShorterThan(){
         assertTrue("string is actually longer", LambdaPlayground.shorterThan("Hello", 20));
     }
+//
+//    @Test
+//    public void canUseAndPredicateForShorterThan(){
+//        assertTrue("string is actually outside bounds", LambdaPlayground.lengthBetweenTwoIntergers("Hello", 3,20));
+//    }
 
-    @Test
-    public void canUseAndPredicateForShorterThan(){
-        assertTrue("string is actually outside bounds", LambdaPlayground.lengthBetweenTwoIntergers("Hello", 3,20));
-    }
-
-    @Test
-    public void canCreateAPredicateForEqualityWithFixesType() {
-        // arrange
-        MyPredicate<String> p1 = MyPredicate.isEqualString("Test");
-        // act
-        Boolean result = p1.test("Test");
-        // assert
-        assertTrue("they are not the same", result);
-    }
+//    @Test
+//    public void canCreateAPredicateForEqualityWithFixesType() {
+//        // arrange
+//        MyPredicate<String> p1 = MyPredicate.isEqualString("Test");
+//        // act
+//        Boolean result = p1.test("Test");
+//        // assert
+//        assertTrue("they are not the same", result);
+//    }
 
     @Test
     public void canCreateAPredicateForEqualityWithGeneric() {
@@ -155,5 +156,17 @@ public class LambdaPlaygroundTest {
         // assert
         assertTrue("elemtns were not added", m1.get("one").size() == 4);
 
+    }
+
+    @Test
+    public void ensureParentInherits(){
+        // arrange
+        Child c = new Child();
+        // test
+        boolean result4 = c.test("1234");
+        boolean result8 = c.test("12345678");
+        // expecting parent to win
+        assertFalse("interface got implemented instead", result4);
+        assertTrue("interface got implemented instead", result8);
     }
 }
